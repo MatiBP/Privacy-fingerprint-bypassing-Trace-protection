@@ -1,0 +1,226 @@
+/* Réinitialisation des marges et des rembourrages */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Style pour le titre principal */
+h1 {
+  color: #693a2a; /* Brun vintage */
+  font-size: 36px; /* Taille de police plus grande */
+  font-family: 'Times New Roman', serif; /* Police vintage */
+  text-align: center; /* Centrer le titre */
+  margin-bottom: 30px; /* Espacement en bas */
+}
+
+/* Style pour le conteneur des boutons */
+.button-group {
+  display: flex;
+  justify-content: space-around; /* Espacement uniforme entre les boutons */
+  margin-bottom: 30px; /* Espacement en bas */
+}
+
+/* Style pour les boutons */
+button {
+  padding: 15px 30px; /* Augmenter la taille du bouton */
+  background-color: #693a2a; /* Brun vintage */
+  color: #fff; /* Texte blanc */
+  border: none;
+  border-radius: 6px; /* Coins arrondis */
+  cursor: pointer;
+  font-size: 18px; /* Taille de police plus grande */
+  font-family: 'Times New Roman', serif; /* Police vintage */
+  text-transform: uppercase; /* Mettre en majuscules */
+  transition: background-color 0.3s; /* Ajouter une transition de couleur au survol */
+}
+
+button:hover {
+  background-color: #9b7150; /* Brun vintage plus clair au survol */
+}
+
+.label-display{
+  text-align: center; /* Centrer le contenu */
+  margin-bottom: 30px; /* Espacement en bas */
+}
+
+/* Style pour l'étiquette */
+label {
+  color: #693a2a; /* Brun vintage */
+  font-size: 24px; /* Taille de police plus grande */
+  font-family: 'Times New Roman', serif; /* Police vintage */
+  text-align: center; /* Centrer le contenu */
+  margin-bottom: 30px; /* Espacement en bas */
+}
+
+/* Style pour le conteneur du nom */
+.name-display {
+  text-align: center; /* Centrer le contenu */
+  margin-bottom: 30px; /* Espacement en bas */
+}
+
+/* Style pour le titre du nom */
+.name-display h2 {
+  color: #693a2a; /* Brun vintage */
+  font-size: 24px; /* Taille de police plus grande */
+  font-family: 'Times New Roman', serif; /* Police vintage */
+  margin-bottom: 10px; /* Espacement en bas du titre */
+}
+
+/* Style pour la valeur du nom */
+#name-value {
+  padding: 15px; /* Augmenter l'espacement */
+  background-color: #f3e1cf; /* Couleur de fond crème */
+  border: 2px solid #693a2a; /* Bordure brun vintage */
+  border-radius: 8px; /* Coins arrondis */
+  max-width: 300px; /* Largeur maximale pour la valeur du nom */
+  margin: 0 auto; /* Centrer horizontalement */
+  font-family: 'Courier New', monospace; /* Police de machine à écrire */
+}
+
+/* Style pour le champ de saisie du nom */
+input[type=text] {
+  width: 220px; /* Légèrement plus large */
+  padding: 12px; /* Augmenter la taille du texte */
+  border: 2px solid #693a2a; /* Bordure brun vintage */
+  border-radius: 6px; /* Coins arrondis */
+  font-family: 'Courier New', monospace; /* Police de machine à écrire */
+  margin: 10px auto; /* Centrer horizontalement */
+  display: block; /* Afficher en bloc */
+}
+
+/* Style pour les pré-formatés */
+pre {
+  padding: 15px; /* Augmenter l'espacement */
+  border: 2px solid #693a2a; /* Bordure brun vintage */
+  border-radius: 8px; /* Coins arrondis */
+  max-height: 200px; /* Hauteur maximale */
+  overflow-y: auto; /* Ajouter une barre de défilement si nécessaire */
+  font-family: 'Courier New', monospace; /* Police de machine à écrire */
+  margin-bottom: 30px; /* Espacement en bas */
+}
+
+/* Effet de transition sur les boutons */
+button {
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+  background-color: hwb(358 27% 36%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée subtile */
+}
+
+/* Effet de zoom sur les éléments */
+@keyframes zoom {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.zoom-effect {
+  animation: zoom 0.5s infinite alternate; /* Animation de zoom */
+}
+
+/* Effet de hover sur les étiquettes */
+label:hover {
+  color: #9b7150; /* Changement de couleur au survol */
+}
+
+/* Effet de fond animé sur les conteneurs */
+.container {
+  background: linear-gradient(45deg, #693a2a, #9b7150); /* Dégradé de couleur */
+  background-size: 400% 400%; /* Taille du dégradé */
+  animation: gradient-bg 10s infinite; /* Animation du dégradé */
+}
+
+@keyframes gradient-bg {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+body {
+  background: linear-gradient(90deg, #ff9a9e, #fecfef, #ff9a9e);
+  background-size: 200% 200%;
+  animation: gradient-bg 4s ease infinite;
+}
+
+@keyframes particle {
+  0% {
+    transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    filter: blur(0px);
+    opacity: 1;
+  }
+  50% {
+    transform: translate3d(100px, 100px, 100px) rotateX(180deg) rotateY(180deg) rotateZ(180deg);
+    filter: blur(2px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+.particle-animation {
+  animation: particle 10s infinite alternate;
+  transition: all 0.3s ease-in-out;
+}
+
+
+/* Positionner les éléments de manière dynamique en utilisant JavaScript */
+.fingerprint-element {
+  position: sticky;
+  opacity: 0;
+}
+
+/* Définir des dimensions et des positions pour chaque élément */
+#element1,
+#element2,
+#element3 {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+}
+
+/* Définir des dimensions et des positions pour chaque élément */
+#element1 {
+
+  /* Positionner dynamiquement l'élément à 5% de la hauteur de la fenêtre */
+  top: calc(5vh - 25px);
+  /* 5% de la hauteur de la fenêtre moins la moitié de la hauteur de l'élément */
+  /* Positionner dynamiquement l'élément à 5% de la largeur de la fenêtre */
+  left: calc(5vw - 25px);
+  /* 5% de la largeur de la fenêtre moins la moitié de la largeur de l'élément */
+}
+
+#element2 {
+  /* Positionner dynamiquement l'élément à 20% de la hauteur de la fenêtre */
+  top: calc(20vh - 50px);
+  /* 20% de la hauteur de la fenêtre moins la moitié de la hauteur de l'élément */
+  /* Positionner dynamiquement l'élément à 20% de la largeur de la fenêtre */
+  left: calc(20vw - 50px);
+  /* 20% de la largeur de la fenêtre moins la moitié de la largeur de l'élément */
+}
+
+#element3 {
+  /* Positionner dynamiquement l'élément à 35% de la hauteur de la fenêtre */
+  top: calc(35vh - 75px);
+  /* 35% de la hauteur de la fenêtre moins la moitié de la hauteur de l'élément */
+  /* Positionner dynamiquement l'élément à 35% de la largeur de la fenêtre */
+  left: calc(35vw - 75px);
+  /* 35% de la largeur de la fenêtre moins la moitié de la largeur de l'élément */
+}

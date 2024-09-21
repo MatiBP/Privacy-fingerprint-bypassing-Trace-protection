@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<script>
+  // Cela permet de supprimer les scripts ajoutés en haut de page, mais Trace arrive tout de meme à patcher notre attack 
+  document.addEventListener('DOMContentLoaded', function () {
+    var scripts = document.querySelectorAll('script');
+    scripts.forEach(function (script) {
+      if (!script.hasAttribute('data-mark') || script.getAttribute('data-mark') !== 'my') {
+        script.replaceWith(""); // Supprime le script s'il n'a pas l'attribut data-mark="my"
+      }
+    });
+  });
+
+  // Cela permet d'overwrite la fonction Math.random utilisé par Trace pour ajouter le bruit, cela permet effectivement de Bypass Trace
+  Math.random = function () {
+    console.log("coucou");
+    return 0;
+  }
+</script>
+
+<head>
+
+  <!-- tentative de bloquer l'extension car le token ne semblait pas changer mais c'est un echec -->
+  <!-- <meta name="extension-content-script-blocked" content="e4054dcf-975b-47e6-a9e4-132ad47b9646"> -->
+
+
+  <!-- tentive de bloquer les scripts de Trace avec une content policy (qui ne bloque pas seulement nos script grace à une data-mark), mais Trace fonctionne tout de meme-->
+  <meta http-equiv="Content-Security-Policy"
+    content="script-src 'self' 'unsafe-inline' '[data-mark=my]' http://cdnjs.cloudflare.com">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FingerPrint against trace</title>
+  <link rel="stylesheet" href="./myStyle.css" />
+
+
+  <script src="ClientRectsBad.js" data-mark="my" defer></script>
+  <script src="clientRectsGood.js" data-mark="my" defer></script>
+  <script src="communicateFingerprintToServer.js" data-mark="my" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js" data-mark="my" defer></script>
+
+</head>
+
+<body>
+
+  <h1>FingerPrint against trace</h1>
+  <!-- Nous utilisons 3 elements pour recupérer la fingerprint avec getClientRects et getBoundingClientRect -->
+  <div id="element1" class="fingerprint-element"></div>
+  <div id="element2" class="fingerprint-element"></div>
+  <div id="element3" class="fingerprint-element"></div>
+
+  <div class="button-group">
+    <div class="button-group-1">
+
+      <!-- Permet d'appeler la fonction qui bypass Trace sans l'overwrite de Math.random -->
+      <button onclick="displayClientBoundingRectsFingerprint()">Get Fingerprint getBoundingClientRect with Trace</button>
+      <pre id="ClientRectsgood"></pre>
+
+    </div>
+    <div class="button-group-2">
+      <!-- Permet d'appeler fonction naive qui utilise getClientRects, il est possible de la modifier pour avoir la version naive qui est patch par Trace (enlever //) -->
+      <button onclick="displayClientRectsFingerprint()">Get Fingerprint getClientRects with Trace</button>
+      <pre id="ClientRectsBad"></pre>
+
+    </div>
+  </div>
+  <div class="name-display">
+      <!-- ici on affiche le nom associé à la Fingerprint si elle est présente dans la db, sinon on affiche Anonymous -->
+    <h2 id="name">Name:</h2>
+    <pre id="name-value"></pre>
+
+  </div>
+  <div class="label-display">
+    <!-- ici on rentre son nom quand on se fait fingerprinted -->
+    <label for="name">Enter your Name : </label>
+    <input type="text" id="name-server" name="name-server" required><br><br>
+
+  </div>
+
+  <script>
+
+    function displayClientBoundingRectsFingerprint() {
+      var fingerprint = getBoundingRectsFingerprint();
+      document.getElementById('ClientRectsgood').innerText = fingerprint;
+      sendFingerprintToServer(fingerprint);
+      getNameFromServer(fingerprint);
+    }
+
+    function displayClientRectsFingerprint() {
+      var fingerprint = getRectsFingerprint();
+      document.getElementById('ClientRectsBad').innerText = fingerprint;
+    }
+
+  </script>
+</body>
+
+</html>
